@@ -1,4 +1,4 @@
-//Variables for password criteria
+// Assignment Code
 var generateBtn = document.querySelector("#generate");
 var lowercaseChar = "abcdefghijklmnopqrstuvwxyz";
 var uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -9,9 +9,9 @@ var uppercaseCheck;
 var numberCheck;
 var specialCheck;
 
-//Password length function
+//password length function
 function passLength(){
-  passwordLength = prompt("How many characters would you like your password to be? (between 8-128 characters): ");
+  passwordLength = prompt("How many characters would you like the password to be? (between 8-128 characters): ");
 
     if (passwordLength<8){
       alert("Password length must be a number between 8-128 characters");
@@ -64,22 +64,25 @@ function passNumbers(){
       alert("Please answer Yes or No");
       passNumbers();
 
-    }else if (numberCheck === "yes" || numberCheck ==="y"){
+    }
+    else if (numberCheck === "yes" || numberCheck ==="y"){
       numberCheck = true;
       return numberCheck;
 
-    }else if (numberCheck === "no" || numberCheck ==="n"){
+    }
+    else if (numberCheck === "no" || numberCheck ==="n"){
       numberCheck = false;
       return numberCheck;
     
-    }else {
+    }
+    else {
       alert("Please answer Yes or No");
       passNumbers();
     }
     return numberCheck;
 }
 
-//Special character function
+//Special characters function
 function passSpecial(){
   specialCheck = prompt("Do you want to include special characters in your password? \n(Yes or No)");
     specialCheck = specialCheck.toLowerCase();
@@ -88,30 +91,33 @@ function passSpecial(){
       alert("Please answer Yes or No");
       passSpecial();
 
-    }else if (specialCheck === "yes" || specialCheck ==="y"){
+    }
+    else if (specialCheck === "yes" || specialCheck ==="y"){
       specialCheck = true;
       return specialCheck;
 
-    }else if (specialCheck === "no" || specialCheck ==="n"){
+    }
+    else if (specialCheck === "no" || specialCheck ==="n"){
       specialCheck = false;
       return specialCheck;
     
-    }else {
+    }
+    else {
       alert("Please answer Yes or No");
       passSpecial();
     }
     return specialCheck;
 }
 
-//Function to generate password with previous data
- function generatePassword(){
-  determineLength();
+ //Generate password with previous data
+function generatePassword(){
+  passLength();
   console.log(passwordLength);
-  determineUppercase();
+  passUppercase();
   console.log(uppercaseCheck);
-  determineNumbers();
+  passNumbers();
   console.log(numberCheck);
-  determineSpecial();
+  passSpecial();
   console.log(specialCheck);
 
 var characters = lowercaseChar;
@@ -119,25 +125,32 @@ var password = "";
 if (uppercaseCheck && numberCheck && specialCheck){
   characters += uppercaseChar + numberChar + specialChar;
 
-}else if (uppercaseCheck && numberCheck){
+}
+else if (uppercaseCheck && numberCheck){
   characters += uppercaseChar + numberChar;
 
-}else if (numberCheck && specialCheck){
+}
+else if (numberCheck && specialCheck){
   characters += numberChar + specialChar;
 
-}else if (uppercaseCheck && specialCheck){
+}
+else if (uppercaseCheck && specialCheck){
   characters += uppercaseChar + specialChar;
 
-}else if (uppercaseCheck){
+}
+else if (uppercaseCheck){
   characters += uppercaseChar;
 
-}else if(numberCheck){
+}
+else if(numberCheck){
   characters += numberChar;
 
-}else if (specialCheck){
+}
+else if (specialCheck){
   characters += specialChar;
 
-}else{
+}
+else{
   characters === lowercaseChar;
 }
 
@@ -147,18 +160,12 @@ if (uppercaseCheck && numberCheck && specialCheck){
   return password;
 }
 
-
-
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
+// password write function
 function writePassword() {
-  var password = generatePassword();
+  var passwordDisplay = "";
+  passwordDisplay = generatePassword();
   var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+  passwordText.value = passwordDisplay;
 }
 
 // Add event listener to generate button
