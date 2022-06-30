@@ -9,6 +9,25 @@ var uppercaseCheck;
 var numberCheck;
 var specialCheck;
 
+//Password length function
+function passLength(){
+  passwordLength = prompt("How many characters would you like your password to be? (between 8-128 characters): ");
+
+    if (passwordLength<8){
+      alert("Password length must be a number between 8-128 characters");
+      passLength();
+    }
+    else if (passwordLength>128){
+      alert("Password length must be a number between 8-128 characters");
+      passLength();
+    }
+    else if (isNaN(passwordLength)){
+      alert("Password length must be a number between 8-128 characters");
+      passLength();
+    }
+    return passwordLength;
+}
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
